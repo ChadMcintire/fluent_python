@@ -18,6 +18,8 @@ class FrenchDeck:
     def __getitem__(self, position):
         return self._cards[position]
 
+
+
 beer_card = Card('7', 'diamonds')
 
 print("define a card")
@@ -46,5 +48,16 @@ for card in deck:
 
 print("Because of __getitem__ deck is also iterable in reverse")
 for card in reversed(deck):
+    print(card)
+
+print("\n if we want to do spades high")
+
+suit_values = dict(spades=3, hearts=2, diamonds=1, clubs=0)
+
+def spades_high(card):
+    rank_value = FrenchDeck.ranks.index(card.rank)
+    return rank_value * len(suit_values) + suit_values[card.suit]    
+
+for card in sorted(deck, key=spades_high):
     print(card)
 
